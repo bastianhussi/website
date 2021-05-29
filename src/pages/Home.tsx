@@ -1,4 +1,4 @@
-import { Heading1 } from "../components/Heading";
+import { Heading1 } from "../components/Custom";
 
 const Home = () => {
   return (
