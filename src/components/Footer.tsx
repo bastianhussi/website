@@ -7,7 +7,7 @@ const Footer = styled.footer`
   justify-content: center;
   align-items: baseline;
   flex-shrink: 0;
-  background-color: ${colors.accent};
+  background-color: ${colors.purple};
   text-align: center;
   margin-top: 10px;
   height: 50px;

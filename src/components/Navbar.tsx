@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import colors from "../colors";
@@ -7,36 +8,30 @@ const Bar = styled.ul`
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: ${colors.background};
+  background-color: ${colors.purple};
 `;
 
-type ItemProps = {
-  active?: boolean;
-};
-
-const Item = styled.li<ItemProps>`
+const Item = styled(NavLink)`
   float: left;
   display: block;
-  color: ${colors.foreground};
+  color: ${colors.white};
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  background-color: ${(props) =>
-    props.active ? colors.accent : colors.background};
+  &.active {
+   background-color: ${(props) => colors.brightPurple};
+  }
+  &:hover {
+    background-color: ${colors.brightPurple};
+  }
 `;
 
 const Navbar = () => {
   return (
     <Bar>
-        <NavLink to={"/"}>
-          <Item active={true}>Home</Item>
-        </NavLink>
-        <NavLink to={"/about"}>
-          <Item>About</Item>
-        </NavLink>
-        <NavLink to={"/links"}>
-          <Item>Links</Item>
-        </NavLink>
+      <Item exact={true} to={"/"}> Home</Item>
+      <Item to={"/about"}> About</Item>
+      <Item to={"/links"}> Links</Item>
     </Bar>
   );
 };

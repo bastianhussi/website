@@ -3,7 +3,7 @@ import colors from "../colors";
 
 const Box = styled.div`
   padding: 10px;
-  background-color: ${colors.accent};
+  background-color: ${colors.grey};
   width: 50%;
   margin: 0 auto;
   border-radius: 5px;

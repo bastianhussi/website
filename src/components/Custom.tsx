@@ -2,12 +2,12 @@ import styled from "styled-components";
 import colors from "../colors";
 
 export const Heading1 = styled.h1`
-  color: ${colors.accent};
+  color: ${colors.blue};
   text-align: center;
 `;
 
 export const Heading2 = styled.h2`
-  color: ${colors.accent};
+  color: ${colors.blue};
   text-align: center;
 `;
 
@@ -16,19 +16,19 @@ export const UnorderdList = styled.ul`
 `;
 
 export const Link = styled.a`
-  color: hotpink;
+color: ${colors.yellow};
   text-decoration: none;
   /* unvisited */
   &:link {
-    color: hotpink;
+    color: ${colors.yellow};
   }
   &:visited {
-    color: blue;
+    color: ${colors.yellow};
   }
   &:hover {
-    color: hotpink;
+    color: ${colors.brightYellow};
   }
   &:active {
-    color: hotpink;
+    color: ${colors.yellow};
   }
 `;
