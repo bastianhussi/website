@@ -16,7 +16,7 @@ export const UnorderdList = styled.ul`
 `;
 
 export const Link = styled.a`
-color: ${colors.yellow};
+  color: ${colors.yellow};
   text-decoration: none;
   /* unvisited */
   &:link {

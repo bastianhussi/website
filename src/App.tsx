@@ -7,7 +7,8 @@ import About from "./pages/About";
 import Links from "./pages/Links";
 import { Link } from "./components/Custom";
 import styled, { createGlobalStyle } from "styled-components";
-import colors from "./colors";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -36,7 +37,7 @@ const Content = styled.div`
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <Router>
         <Navbar />
@@ -57,9 +58,8 @@ function App() {
           </p>
         </Footer>
       </Router>
-    </>
+    </Provider>
   );
 }
 
 export default App;
-
