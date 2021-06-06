@@ -1,10 +1,4 @@
-export type Theme = {
-  background: string;
-  foreground: string;
-  font: string;
-  accent: string;
-  brightAccent: string;
-};
+import { Theme } from "../../themes";
 
 export type ThemeState = {
   theme: Theme;

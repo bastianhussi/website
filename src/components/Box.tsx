@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import colors from "../colors";
+import { ThemeState } from "../store/theme/types";
 
-const Box = styled.div`
+const Box = styled.div<ThemeState>`
   padding: 10px;
-  background-color: ${colors.grey};
+  background-color: ${(props) => props.theme.grey};
   width: 50%;
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: 6px;
   @media (max-width: 600px) {
     width: auto;
     margin: 0 10px;

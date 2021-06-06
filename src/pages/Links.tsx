@@ -1,5 +1,6 @@
 import Box from "../components/Box";
-import { Heading1, Link, UnorderdList } from "../components/Custom";
+import { Heading1, UnorderdList } from "../components/Custom";
+import Link from "../components/Link";
 
 const Links = () => {
   return (

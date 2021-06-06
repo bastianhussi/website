@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Links from "./pages/Links";
-import { Link } from "./components/Custom";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import store from "./store/index";
+import { ThemeState } from "./store/theme/types";
+import Link from "./components/Link";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<ThemeState>`
 html {
   font-family: "Fira Sans", sans-serif;
   font-size: larger;
@@ -22,6 +23,8 @@ body {
   padding: 0;
   height: 100%;
   position: relative;
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.foreground};
 }
 
 #root {
@@ -36,28 +39,36 @@ const Content = styled.div`
 `;
 
 function App() {
+  const [themeState, setThemeState] = useState<ThemeState>(store.getState());
+
+  store.subscribe(() => {
+    setThemeState(store.getState());
+  });
+
   return (
     <Provider store={store}>
-      <GlobalStyle />
-      <Router>
-        <Navbar />
-        <Content>
-          <Switch>
-            <Route path="/links" component={Links} />
-            <Route path="/about" component={About} />
-            <Route path="/" component={Home} />
-          </Switch>
-        </Content>
-        <Footer>
-          <p>2021</p>
-          <p>
-            Made with
-            <Link href="https://reactjs.org/" target="_blank">
-              React.js
-            </Link>
-          </p>
-        </Footer>
-      </Router>
+      <ThemeProvider theme={themeState.theme}>
+        <GlobalStyle />
+        <Router>
+          <Navbar />
+          <Content>
+            <Switch>
+              <Route path="/links" component={Links} />
+              <Route path="/about" component={About} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </Content>
+          <Footer>
+            <p>2021</p>
+            <p>
+              Made with
+              <Link href="https://reactjs.org/" target="_blank">
+                React.js
+              </Link>
+            </p>
+          </Footer>
+        </Router>
+      </ThemeProvider>
     </Provider>
   );
 }

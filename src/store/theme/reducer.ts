@@ -1,29 +1,25 @@
-import { SET_THEME, Theme } from "./types";
+import { lightTheme } from "../../themes";
+import { SET_THEME } from "./types";
 import { ThemeAction, ThemeState } from "./types";
-
-const lightTheme: Theme = {
-  background: "#fff",
-  foreground: "#fff",
-  font: "#fff",
-  accent: "#fff",
-  brightAccent: "#fff",
-};
 
 const initialState: ThemeState = {
   theme: lightTheme,
 };
 
-export default function (
+const themeReducer = (
   state = initialState,
   action: ThemeAction
-): ThemeState {
-  switch (action.type) {
+): ThemeState => {
+  const { type, payload } = action;
+  switch (type) {
     case SET_THEME: {
       return {
-        theme: action.payload,
+        theme: payload,
       };
     }
     default:
       return state;
   }
-}
+};
+
+export default themeReducer;
