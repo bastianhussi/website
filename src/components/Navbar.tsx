@@ -2,25 +2,39 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import Switch from "./Switch";
 import { AppDispatch } from "../store";
 import { setTheme } from "../store/theme/actions";
 import { ThemeState } from "../store/theme/types";
 import { darkTheme, lightTheme } from "../themes";
 
+// TODO: improve behavior on small screen sizes
 const Bar = styled.ul<ThemeState>`
+  display: flex;
+  justify-content: left;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: ${(props) => props.theme.blue};
+
+  @media (max-width: 600px) {
+    flex-flow: column wrap;
+  }
 `;
 
-const Item = styled(NavLink)<ThemeState>`
-  float: left;
+const Item = styled.div.attrs(() => ({
+  align: "left",
+}))<ThemeState>`
+  align-self: ${(props) => props.align};
   display: block;
-  color: ${(props) => props.theme.white};
   text-align: center;
   padding: 14px 16px;
+`;
+
+const Link = styled(NavLink)`
+  color: ${(props) => props.theme.white};
   text-decoration: none;
   &.active {
     background-color: ${(props) => props.theme.brightBlue};
@@ -43,18 +57,20 @@ const Navbar = () => {
 
   return (
     <Bar>
-      <Item exact={true} to={"/"}>
-        {" "}
-        Home
+      <Item>
+        <Link exact={true} to={"/"}>
+          Home
+        </Link>
       </Item>
-      <Item to={"/about"}> About</Item>
-      <Item to={"/links"}> Links</Item>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={toggleTheme}
-        style={{ float: "right" }}
-      />
+      <Item>
+        <Link to={"/about"}>About</Link>
+      </Item>
+      <Item>
+        <Link to={"/links"}>Links</Link>
+      </Item>
+      <Item align={"right"}>
+        <Switch checked={checked} onChange={toggleTheme} />
+      </Item>
     </Bar>
   );
 };
