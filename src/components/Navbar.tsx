@@ -8,7 +8,22 @@ import { setTheme } from "../store/theme/actions";
 import { ThemeState } from "../store/theme/types";
 import { darkTheme, lightTheme } from "../themes";
 
-// TODO: improve behavior on small screen sizes
+const Link = styled(NavLink)`
+  display: block;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  color: ${(props) => props.theme.white};
+
+  &.active {
+    background-color: ${(props) => props.theme.brightBlue};
+    font-weight: bold;
+  }
+  &:hover {
+    backgreund-color: ${(props) => props.theme.brightBlue};
+  }
+`;
+
 const Bar = styled.ul<ThemeState>`
   display: flex;
   justify-content: left;
@@ -19,29 +34,21 @@ const Bar = styled.ul<ThemeState>`
   overflow: hidden;
   background-color: ${(props) => props.theme.blue};
 
-  @media (max-width: 600px) {
+  @media (max-width: 300px) {
     flex-flow: column wrap;
+    & ${Link} {
+      width: 100%;
+      padding: 12px 0px;
+    }
   }
 `;
 
-const Item = styled.div.attrs(() => ({
-  align: "left",
-}))<ThemeState>`
-  align-self: ${(props) => props.align};
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-`;
+const ThemeSwitcher = styled.div`
+  margin-left: auto;
+  margin-right: 12px;
 
-const Link = styled(NavLink)`
-  color: ${(props) => props.theme.white};
-  text-decoration: none;
-  &.active {
-    background-color: ${(props) => props.theme.brightBlue};
-    font-weight: bold;
-  }
-  &:hover {
-    backgreund-color: ${(props) => props.theme.brightBlue};
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -57,20 +64,14 @@ const Navbar = () => {
 
   return (
     <Bar>
-      <Item>
-        <Link exact={true} to={"/"}>
-          Home
-        </Link>
-      </Item>
-      <Item>
-        <Link to={"/about"}>About</Link>
-      </Item>
-      <Item>
-        <Link to={"/links"}>Links</Link>
-      </Item>
-      <Item align={"right"}>
+      <Link exact={true} to={"/"}>
+        Home
+      </Link>
+      <Link to={"/about"}>About</Link>
+      <Link to={"/links"}>Links</Link>
+      <ThemeSwitcher>
         <Switch checked={checked} onChange={toggleTheme} />
-      </Item>
+      </ThemeSwitcher>
     </Bar>
   );
 };

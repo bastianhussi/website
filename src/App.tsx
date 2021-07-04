@@ -9,7 +9,6 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import store from "./store/index";
 import { ThemeState } from "./store/theme/types";
-import Link from "./components/Link";
 
 const GlobalStyle = createGlobalStyle<ThemeState>`
 html {
@@ -58,15 +57,7 @@ function App() {
               <Route path="/" component={Home} />
             </Switch>
           </Content>
-          <Footer>
-            <p>2021</p>
-            <p>
-              Made with
-              <Link href="https://reactjs.org/" target="_blank">
-                React.js
-              </Link>
-            </p>
-          </Footer>
+      <Footer />
         </Router>
       </ThemeProvider>
     </Provider>

@@ -1,9 +1,14 @@
-import { lightTheme } from "../../themes";
+import { lightTheme, darkTheme } from "../../themes";
 import { SET_THEME } from "./types";
 import { ThemeAction, ThemeState } from "./types";
 
+// TODO: listen on changes to this value
+// window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+//     const newColorScheme = e.matches ? "dark" : "light";
+// });
+
 const initialState: ThemeState = {
-  theme: lightTheme,
+  theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? darkTheme : lightTheme
 };
 
 const themeReducer = (
