@@ -1,20 +1,6 @@
-export type Theme = {
-  background: string;
-  foreground: string;
-  white: string;
-  black: string;
-  grey: string;
-  blue: string;
-  brightBlue: string;
-  green: string;
-  brightGreen: string;
-  red: string;
-  brightRed: string;
-  yellow: string;
-  brightYellow: string;
-};
+import { DefaultTheme } from "styled-components";
 
-export const lightTheme: Theme = {
+export const lightTheme: DefaultTheme = {
   background: "#EAE8F1",
   foreground: "#020204",
   white: "#EAE8F1",
@@ -30,7 +16,7 @@ export const lightTheme: Theme = {
   brightYellow: "#FFF4BD",
 };
 
-export const darkTheme: Theme = {
+export const darkTheme: DefaultTheme = {
   background: "#020204",
   foreground: "#EAE8F1",
   white: "#EAE8F1",

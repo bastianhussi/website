@@ -1,30 +1,27 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Switch from "./Switch";
-import { AppDispatch } from "../store";
-import { setTheme } from "../store/theme/actions";
-import { ThemeState } from "../store/theme/types";
-import { darkTheme, lightTheme } from "../themes";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { toggleTheme } from "../features/theme/themeSlice";
 
 const Link = styled(NavLink)`
   display: block;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.white};
 
   &.active {
-    background-color: ${(props) => props.theme.brightBlue};
+    background-color: ${({ theme }) => theme.brightBlue};
     font-weight: bold;
   }
   &:hover {
-    backgreund-color: ${(props) => props.theme.brightBlue};
+    backgreund-color: ${({ theme }) => theme.brightBlue};
   }
 `;
 
-const Bar = styled.ul<ThemeState>`
+const Bar = styled.ul`
   display: flex;
   justify-content: left;
   align-items: center;
@@ -32,7 +29,7 @@ const Bar = styled.ul<ThemeState>`
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: ${(props) => props.theme.blue};
+  background-color: ${({ theme }) => theme.blue};
 
   @media (max-width: 300px) {
     flex-flow: column wrap;
@@ -53,14 +50,8 @@ const ThemeSwitcher = styled.div`
 `;
 
 const Navbar = () => {
-  const [checked, setChecked] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const toggleTheme = () => {
-    setChecked(!checked);
-
-    dispatch(setTheme(checked ? lightTheme : darkTheme));
-  };
+  const darkTheme = useAppSelector((state) => state.theme.dark);
+  const dispatch = useAppDispatch();
 
   return (
     <Bar>
@@ -70,7 +61,7 @@ const Navbar = () => {
       <Link to={"/about"}>About</Link>
       <Link to={"/links"}>Links</Link>
       <ThemeSwitcher>
-        <Switch checked={checked} onChange={toggleTheme} />
+        <Switch checked={darkTheme} onChange={() => dispatch(toggleTheme())} />
       </ThemeSwitcher>
     </Bar>
   );

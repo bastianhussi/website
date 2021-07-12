@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ThemeState } from "../store/theme/types";
 
 const Wrapper = styled.label`
   position: relative;
@@ -14,14 +13,14 @@ const Input = styled.input`
   height: 0;
 `;
 
-const Slider = styled.span<ThemeState>`
+const Slider = styled.span`
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => props.theme.grey};
+  background-color: ${({ theme }) => theme.grey};
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
@@ -33,18 +32,18 @@ const Slider = styled.span<ThemeState>`
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: ${(props) => props.theme.green};
+    background-color: ${({ theme }) => theme.green};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;
   }
 
   ${Input}:checked + & {
-    background-color: ${(props) => props.theme.red};
+    background-color: ${({ theme }) => theme.red};
   }
 
   ${Input}:focus + & {
-    box-shadow: 0 0 1px ${(props) => props.theme.blue};
+    box-shadow: 0 0 1px ${({ theme }) => theme.blue};
   }
 
   ${Input}:checked + &:before {

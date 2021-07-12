@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { ThemeState } from "../store/theme/types";
 
-const Box = styled.div<ThemeState>`
+const Box = styled.div`
   padding: 10px;
-  background-color: ${(props) => props.theme.grey};
+  background-color: ${({ theme }) => theme.grey};
   width: 50%;
   margin: 0 auto;
   border-radius: 6px;

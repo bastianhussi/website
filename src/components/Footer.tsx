@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Link from "./Link";
-import { ThemeState } from "../store/theme/types";
 
-const Bar = styled.footer<ThemeState>`
+const Bar = styled.footer`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

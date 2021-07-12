@@ -1,5 +1,5 @@
 import Box from "../components/Box";
-import { Heading1, Heading2 } from "../components/Custom";
+import { Heading1, Heading2 } from "../components/Heading";
 
 const Home = () => {
   return (
